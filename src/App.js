@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 
-
-function App() {
+const App = () => {
 	const expenses = [
 		{
 			id: "e1",
@@ -50,7 +49,7 @@ function App() {
 	// 		date: expenses[3].date,
 	// 	}),
 	// );
-  return (
+	return (
 		<div>
 			<h1>Hi there</h1>
 			<ExpenseItem
@@ -71,6 +70,6 @@ function App() {
 				date={expenses[3].date}></ExpenseItem>
 		</div>
 	);
-}
+};
 
 export default App;
