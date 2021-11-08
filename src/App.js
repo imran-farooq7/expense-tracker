@@ -1,4 +1,6 @@
+import { useState } from "react";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
+import ExpensesFilter from "./components/Expenses/ExpensesFilter";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
@@ -23,34 +25,23 @@ const App = () => {
 			date: new Date(2021, 5, 12),
 		},
 	];
-	// return React.createElement(
-	// 	"div",
-	// 	{},
-	// 	React.createElement("h2", {}, "Hi there"),
-	// 	React.createElement(ExpenseItem, {
-	// 		title: expenses[0].title,
-	// 		amount: expenses[0].amount,
-	// 		date: expenses[0].date,
-	// 	}),
-	// 	React.createElement(ExpenseItem, {
-	// 		title: expenses[1].title,
-	// 		amount: expenses[1].amount,
-	// 		date: expenses[1].date,
-	// 	}),
-	// 	React.createElement(ExpenseItem, {
-	// 		title: expenses[2].title,
-	// 		amount: expenses[2].amount,
-	// 		date: expenses[2].date,
-	// 	}),
-	// 	React.createElement(ExpenseItem, {
-	// 		title: expenses[3].title,
-	// 		amount: expenses[3].amount,
-	// 		date: expenses[3].date,
-	// 	}),
-	// );
+	const addExpenseHandler = (expense) => {
+		console.log("in App.js");
+		console.log(expense);
+	};
+	const [filteredYear, setFilteredYear] = useState("2020");
+
+	const filterChangeHandler = (selectedYear) => {
+		setFilteredYear(selectedYear);
+	};
+
 	return (
 		<div>
-			<NewExpense />
+			<NewExpense onAddExpense={addExpenseHandler} />
+			<ExpensesFilter
+				selected={filteredYear}
+				onChangeFilter={filterChangeHandler}
+			/>
 			<ExpenseItem
 				title="Toilet Paper"
 				amount={expenses[0].amount}
