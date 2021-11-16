@@ -39,6 +39,17 @@ const App = () => {
 	const filteredItems = expenses.filter((expense) => {
 		return expense.date.getFullYear().toString() === filteredYear;
 	});
+	let expensesContent = <p>No expense found</p>;
+	if (filteredItems.length > 0) {
+		expensesContent = filteredItems.map((expense) => (
+			<ExpenseItem
+				key={expense.id}
+				title={expense.title}
+				amount={expense.amount}
+				date={expense.date}
+			/>
+		));
+	}
 
 	return (
 		<div>
@@ -47,14 +58,7 @@ const App = () => {
 				selected={filteredYear}
 				onChangeFilter={filterChangeHandler}
 			/>
-			{filteredItems.map((expense) => (
-				<ExpenseItem
-					key={expense.id}
-					title={expense.title}
-					amount={expense.amount}
-					date={expense.date}
-				/>
-			))}
+			{expensesContent}
 		</div>
 	);
 };
